@@ -5,4 +5,5 @@ from openupgradelib import openupgrade
 
 @openupgrade.migrate()
 def migrate(env, version):
-    openupgrade.load_data(env.cr, "pos_sale", "15.0.1.1/noupdate_changes.xml")
+    if env.ref('point_of_sale.pos_config_main', raise_if_not_found=False):
+        openupgrade.load_data(env.cr, "pos_sale", "15.0.1.1/noupdate_changes.xml")
